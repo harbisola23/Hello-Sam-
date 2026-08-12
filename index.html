@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hello Sam 💙</title>
   <meta name="description" content="Hello Sam — a playful little friendship website.">
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap');
 
@@ -18,8 +19,14 @@
       --border: rgba(255,255,255,.14);
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       color: var(--white);
@@ -42,6 +49,99 @@
       mask-image: linear-gradient(to bottom, black, transparent 75%);
     }
 
+    /* =========================
+       PRANK OPENING
+    ========================== */
+
+    #prank-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: grid;
+      place-items: center;
+      padding: 25px;
+      text-align: center;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(38,151,255,.25), transparent 30%),
+        radial-gradient(circle at 80% 80%, rgba(102,57,255,.22), transparent 30%),
+        #02040a;
+      transition: opacity .8s ease, visibility .8s ease;
+    }
+
+    #prank-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .prank-box {
+      width: min(650px, 100%);
+      padding: 45px 28px;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      background: rgba(255,255,255,.07);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 30px 100px rgba(0,0,0,.55);
+      animation: prankFloat 3s ease-in-out infinite;
+    }
+
+    @keyframes prankFloat {
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    .prank-small {
+      color: #72bdff;
+      font-weight: 800;
+      letter-spacing: 2px;
+      font-size: .75rem;
+      text-transform: uppercase;
+    }
+
+    .prank-box h1 {
+      margin: 18px 0;
+      font-family: "Baloo 2", cursive;
+      font-size: clamp(3rem, 12vw, 6.5rem);
+      line-height: .9;
+      letter-spacing: -3px;
+      background: linear-gradient(90deg, #fff, #64b9ff, #b08cff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .prank-box p {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 1.05rem;
+    }
+
+    .prank-button {
+      border: 0;
+      margin-top: 15px;
+      padding: 14px 22px;
+      border-radius: 15px;
+      background: #fff;
+      color: #041020;
+      font-weight: 800;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform .2s ease;
+    }
+
+    .prank-button:hover {
+      transform: translateY(-3px) rotate(-1deg);
+    }
+
+    #prank-step-2 {
+      display: none;
+    }
+
+    /* =========================
+       NAVIGATION
+    ========================== */
+
     nav {
       position: sticky;
       top: 0;
@@ -60,7 +160,10 @@
       font-size: 1.35rem;
       font-weight: 800;
     }
-    .logo span { color: var(--blue); }
+
+    .logo span {
+      color: var(--blue);
+    }
 
     nav a {
       color: #d8e9ff;
@@ -68,6 +171,10 @@
       font-weight: 600;
       font-size: .92rem;
     }
+
+    /* =========================
+       HERO
+    ========================== */
 
     .hero {
       min-height: 90vh;
@@ -77,7 +184,9 @@
       text-align: center;
     }
 
-    .hero-inner { max-width: 900px; }
+    .hero-inner {
+      max-width: 900px;
+    }
 
     .tag {
       display: inline-block;
@@ -90,7 +199,7 @@
       font-weight: 700;
     }
 
-    h1 {
+    .hero h1 {
       margin: 20px 0 14px;
       font-family: "Baloo 2", cursive;
       font-size: clamp(4.8rem, 15vw, 10rem);
@@ -120,10 +229,19 @@
       font-weight: 800;
       transition: transform .2s ease;
     }
-    .button:hover { transform: translateY(-3px) rotate(-1deg); }
 
-    section { padding: 85px 7%; }
-    .wrap { max-width: 1050px; margin: auto; }
+    .button:hover {
+      transform: translateY(-3px) rotate(-1deg);
+    }
+
+    section {
+      padding: 85px 7%;
+    }
+
+    .wrap {
+      max-width: 1050px;
+      margin: auto;
+    }
 
     .label {
       color: #70beff;
@@ -140,9 +258,20 @@
       line-height: .95;
     }
 
-    .story-card, .music-card {
+    /* =========================
+       STORY
+    ========================== */
+
+    .story-card,
+    .music-card,
+    .terms-card,
+    .final-card {
       border: 1px solid var(--border);
-      background: linear-gradient(145deg, rgba(255,255,255,.09), rgba(255,255,255,.035));
+      background: linear-gradient(
+        145deg,
+        rgba(255,255,255,.09),
+        rgba(255,255,255,.035)
+      );
       border-radius: 30px;
       padding: clamp(24px, 5vw, 45px);
       box-shadow: 0 30px 90px rgba(0,0,0,.30);
@@ -169,33 +298,136 @@
       font-weight: 800;
     }
 
-    .photo-section {
-      display: grid;
-      grid-template-columns: .9fr 1.1fr;
-      gap: 35px;
-      align-items: center;
+    /* =========================
+       TIMELINE
+    ========================== */
+
+    .timeline {
+      position: relative;
+      margin-top: 45px;
     }
 
-    .photo-frame {
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(
+        to bottom,
+        transparent,
+        #48a8ff,
+        #8c6dff,
+        transparent
+      );
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      position: relative;
+      width: 50%;
+      padding: 20px 45px;
+    }
+
+    .timeline-item:nth-child(odd) {
+      left: 0;
+      text-align: right;
+    }
+
+    .timeline-item:nth-child(even) {
+      left: 50%;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      top: 28px;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 25px #48a8ff;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-dot {
+      right: -7px;
+    }
+
+    .timeline-item:nth-child(even) .timeline-dot {
+      left: -7px;
+    }
+
+    .timeline-content {
+      padding: 22px;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: rgba(255,255,255,.06);
+    }
+
+    .timeline-content h3 {
+      margin: 0 0 8px;
+      font-family: "Baloo 2", cursive;
+      font-size: 1.7rem;
+    }
+
+    .timeline-content p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* =========================
+       GALLERY
+    ========================== */
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+      border-radius: 22px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      box-shadow: 0 20px 55px rgba(0,0,0,.3);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 330px;
+      display: block;
+      object-fit: cover;
+      transition: transform .45s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.06);
+    }
+
+    /* =========================
+       VIDEO
+    ========================== */
+
+    .video-card {
       padding: 10px;
-      border-radius: 28px;
+      border-radius: 30px;
       background: linear-gradient(135deg, #49aaff, #6d45ff, #0b1530);
       box-shadow: 0 30px 80px rgba(0,0,0,.4);
-      transform: rotate(-2deg);
     }
 
-    .photo-frame img {
-      width: 100%;
+    .video-card video {
       display: block;
-      aspect-ratio: 4/5;
-      object-fit: cover;
-      border-radius: 20px;
+      width: 100%;
+      border-radius: 22px;
+      max-height: 650px;
+      background: #000;
     }
 
-    .photo-copy p {
-      color: var(--muted);
-      line-height: 1.8;
-    }
+    /* =========================
+       MUSIC
+    ========================== */
 
     .music-card iframe {
       width: 100%;
@@ -204,6 +436,96 @@
       border-radius: 14px;
     }
 
+    /* =========================
+       TERMS
+    ========================== */
+
+    .terms-card h3 {
+      margin-top: 30px;
+      color: #fff;
+      font-family: "Baloo 2", cursive;
+      font-size: 1.55rem;
+    }
+
+    .terms-card h3:first-child {
+      margin-top: 0;
+    }
+
+    .terms-card p {
+      color: #d7e2f0;
+      line-height: 1.85;
+    }
+
+    .terms-card ul {
+      color: #d7e2f0;
+      line-height: 2;
+      padding-left: 22px;
+    }
+
+    .terms-highlight {
+      margin-top: 30px;
+      padding: 20px;
+      border-radius: 18px;
+      background: rgba(72,168,255,.08);
+      border: 1px solid rgba(72,168,255,.22);
+      text-align: center;
+      font-family: "Baloo 2", cursive;
+      font-size: 1.4rem;
+    }
+
+    /* =========================
+       FINAL SURPRISE
+    ========================== */
+
+    .final-section {
+      min-height: 90vh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+    }
+
+    .final-intro {
+      max-width: 700px;
+      margin: auto;
+    }
+
+    #final-message {
+      display: none;
+      margin-top: 30px;
+      text-align: left;
+      animation: reveal .8s ease;
+    }
+
+    @keyframes reveal {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .final-card p {
+      color: #d7e2f0;
+      line-height: 1.9;
+      font-size: 1.04rem;
+    }
+
+    .final-card .big-line {
+      color: #fff;
+      font-family: "Baloo 2", cursive;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      line-height: 1.1;
+      margin: 30px 0;
+      text-align: center;
+    }
+
+    /* =========================
+       FOOTER
+    ========================== */
+
     footer {
       padding: 50px 7%;
       text-align: center;
@@ -211,115 +533,970 @@
       font-size: .9rem;
     }
 
-    .heart { display: inline-block; animation: float 2s ease-in-out infinite; }
-    @keyframes float {
-      50% { transform: translateY(-5px) rotate(5deg); }
+    .heart {
+      display: inline-block;
+      animation: float 2s ease-in-out infinite;
     }
 
+    @keyframes float {
+      50% {
+        transform: translateY(-5px) rotate(5deg);
+      }
+    }
+
+    /* =========================
+       MOBILE
+    ========================== */
+
     @media (max-width: 760px) {
-      .photo-section { grid-template-columns: 1fr; }
-      .photo-frame { max-width: 430px; margin: auto; }
-      h1 { letter-spacing: -4px; }
-      nav { padding: 14px 5%; }
-      section { padding: 65px 5%; }
+
+      .timeline::before {
+        left: 10px;
+      }
+
+      .timeline-item,
+      .timeline-item:nth-child(even) {
+        width: 100%;
+        left: 0;
+        padding-left: 40px;
+        padding-right: 0;
+        text-align: left;
+      }
+
+      .timeline-item:nth-child(odd) .timeline-dot,
+      .timeline-item:nth-child(even) .timeline-dot {
+        left: 3px;
+        right: auto;
+      }
+
+      .gallery {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .gallery-item img {
+        height: 250px;
+      }
+
+      .hero h1 {
+        letter-spacing: -4px;
+      }
+
+      nav {
+        padding: 14px 5%;
+      }
+
+      section {
+        padding: 65px 5%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-item img {
+        height: 360px;
+      }
     }
   </style>
 </head>
+
 <body>
 
+  <!-- =========================
+       PRANK OPENING
+  ========================== -->
+
+  <div id="prank-screen">
+
+    <div class="prank-box">
+
+      <div id="prank-step-1">
+
+        <div class="prank-small">⚠️ Sam, please read this</div>
+
+        <h1>Wait… 👀</h1>
+
+        <p>
+          Okay… I have something important to tell you.
+        </p>
+
+        <button class="prank-button" onclick="nextPrankStep()">
+          I'm listening 👀
+        </button>
+
+      </div>
+
+      <div id="prank-step-2">
+
+        <div class="prank-small">This is your final warning.</div>
+
+        <h1>Are you sure? 😭</h1>
+
+        <p>
+          Because once you click this, there's no going back.
+          You have officially been warned.
+        </p>
+
+        <button class="prank-button" onclick="enterWebsite()">
+          YES, LET ME SEE 💙
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       NAV
+  ========================== -->
+
   <nav>
-    <div class="logo">Hello<span>Sam</span> 💙</div>
-    <a href="#story">Episode 1 ↓</a>
+    <div class="logo">
+      Hello<span>Sam</span> 💙
+    </div>
+
+    <a href="#story">
+      Episode 1 ↓
+    </a>
   </nav>
 
+
+  <!-- =========================
+       HERO
+  ========================== -->
+
   <header class="hero">
+
     <div class="hero-inner">
-      <span class="tag">A tiny website for a very unserious friendship 😭</span>
+
+      <span class="tag">
+        A tiny website for a very unserious friendship 😭
+      </span>
+
       <h1>Hello Sam.</h1>
+
       <p>
-        Two years, several cities, random disappearances, plenty of catch-ups…
-        and somehow we're still here. 💙
+        Two years, several cities, random disappearances,
+        plenty of catch-ups… and somehow we're still here. 💙
       </p>
-      <a class="button" href="#story">Open the story 👀</a>
+
+      <a class="button" href="#story">
+        Open the story 👀
+      </a>
+
     </div>
+
   </header>
 
+
   <main>
+
+    <!-- =========================
+         EPISODE 1
+    ========================== -->
+
     <section id="story">
+
       <div class="wrap">
-        <div class="label">Episode 1</div>
-        <h2>How It All Started 💙</h2>
+
+        <div class="label">
+          Episode 1
+        </div>
+
+        <h2>
+          How It All Started 💙
+        </h2>
 
         <article class="story-card">
-          <p>It all started at a tech event.</p>
 
-          <p>You were presenting for a website creation competition, and somehow, in the middle of everything happening that day, I walked up to you and said hi. From that simple hello, a whole friendship began.</p>
-
-          <p>You even helped me get a drink — I still can’t decide if it was a cocktail or a mocktail 😂 — and somehow, we ended up exchanging contacts.</p>
-
-          <p>And just like that… we became friends.</p>
-
-          <p>Two years later, it’s actually crazy to think about how much has happened since that day. We’ve had our moments, we’ve fallen out, found our way back, disappeared for a while, and then started talking again like absolutely nothing happened.</p>
-
-          <p>That’s probably one of my favourite things about our friendship.</p>
-
-          <p>We don’t have to talk every single day. We can go a while without speaking, but whenever we do talk again, there’s never that awkward “so why haven't you talked to me?” energy. 😂 It just feels normal. Like we simply pressed pause and continued where we left off.</p>
-
-          <p>And distance never really changed that.</p>
-
-          <p>From Abuja to Lagos, and then from Lagos to Imo State, somehow we’ve still managed to keep this friendship going.</p>
-
-          <p>We’ve had our pretty talks, our random conversations, our serious conversations, and those moments where we’ve just been there for each other emotionally.</p>
-
-          <p class="thankyou">So, Sam…<br>Thank you.</p>
-
-          <p>Thank you for being my friend through all the different versions of this friendship. Thank you for the laughs, the conversations, the advice, the random moments, and even the times we disappeared and somehow came back. 😂</p>
-
-          <p>Two years of friendship is something worth celebrating.</p>
-
-          <p>And honestly?</p>
-
-          <p class="final-line">I’m really glad that random hello at that tech event turned into us. 💙</p>
-
-          <p>Here’s to almost two years, Sam.</p>
-
-          <p>And please… don't let this emotional episode get to your head. 😂</p>
-        </article>
-      </div>
-    </section>
-
-    <section>
-      <div class="wrap photo-section">
-        <div class="photo-frame">
-          <img src="sam-photo.jpg" alt="Sam">
-        </div>
-        <div class="photo-copy">
-          <div class="label">The main character 📸</div>
-          <h2>Yep. This is Sam.</h2>
           <p>
-            One photo for now. More can be added whenever you send them.
+            It all started at a tech event.
           </p>
-        </div>
+
+          <p>
+            You were presenting for a website creation competition,
+            and somehow, in the middle of everything happening that day,
+            I walked up to you and said hi. From that simple hello,
+            a whole friendship began.
+          </p>
+
+          <p>
+            You even helped me get a drink — I still can’t decide
+            if it was a cocktail or a mocktail 😂 — and somehow,
+            we ended up exchanging contacts.
+          </p>
+
+          <p>
+            And just like that… we became friends.
+          </p>
+
+          <p>
+            Two years later, it’s actually crazy to think about how
+            much has happened since that day. We’ve had our moments,
+            we’ve fallen out, found our way back, disappeared for a while,
+            and then started talking again like absolutely nothing happened.
+          </p>
+
+          <p>
+            That’s probably one of my favourite things about our friendship.
+          </p>
+
+          <p>
+            We don’t have to talk every single day. We can go a while
+            without speaking, but whenever we do talk again, there’s never
+            that awkward “so why haven't you talked to me?” energy. 😂
+            It just feels normal. Like we simply pressed pause and continued
+            where we left off.
+          </p>
+
+          <p>
+            And distance never really changed that.
+          </p>
+
+          <p>
+            From Abuja to Lagos, and then from Lagos to Imo State,
+            somehow we’ve still managed to keep this friendship going.
+          </p>
+
+          <p>
+            We’ve had our pretty talks, our random conversations,
+            our serious conversations, and those moments where we’ve
+            just been there for each other emotionally.
+          </p>
+
+          <p class="thankyou">
+            So, Sam…<br>
+            Thank you.
+          </p>
+
+          <p>
+            Thank you for being my friend through all the different
+            versions of this friendship. Thank you for the laughs,
+            the conversations, the advice, the random moments, and even
+            the times we disappeared and somehow came back. 😂
+          </p>
+
+          <p>
+            Two years of friendship is something worth celebrating.
+          </p>
+
+          <p>
+            And honestly?
+          </p>
+
+          <p class="final-line">
+            I’m really glad that random hello at that tech event
+            turned into us. 💙
+          </p>
+
+          <p>
+            Here’s to almost two years, Sam.
+          </p>
+
+          <p>
+            And please… don't let this emotional episode get to your head. 😂
+          </p>
+
+        </article>
+
       </div>
+
     </section>
+
+
+    <!-- =========================
+         TIMELINE
+    ========================== -->
+
+    <section id="timeline">
+
+      <div class="wrap">
+
+        <div class="label">
+          The Journey 🗺️
+        </div>
+
+        <h2>
+          Somehow, We Got Here.
+        </h2>
+
+        <div class="timeline">
+
+          <div class="timeline-item">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-content">
+
+              <h3>THE TECH EVENT 👋</h3>
+
+              <p>
+                One random hello at a tech event.
+                Neither of us knew what that hello was about to become.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="timeline-item">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-content">
+
+              <h3>THE CONTACT EXCHANGE 📱</h3>
+
+              <p>
+                A drink, a conversation, exchanged contacts…
+                and suddenly, we were friends.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="timeline-item">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-content">
+
+              <h3>ABUJA 📍</h3>
+
+              <p>
+                Where the friendship continued to take shape.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="timeline-item">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-content">
+
+              <h3>LAGOS 🌆</h3>
+
+              <p>
+                Different city. Same friendship.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="timeline-item">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-content">
+
+              <h3>IMO STATE 🌿</h3>
+
+              <p>
+                And somehow, distance still didn't manage
+                to cancel the friendship.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="timeline-item">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-content">
+
+              <h3>ALMOST TWO YEARS 💙</h3>
+
+              <p>
+                Different places, different seasons of life,
+                and we're still here.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         GALLERY
+    ========================== -->
+
+    <section id="gallery">
+
+      <div class="wrap">
+
+        <div class="label">
+          Photos 📸
+        </div>
+
+        <h2>
+          Sam's Gallery
+        </h2>
+
+        <p style="color: var(--muted); line-height: 1.8; max-width: 650px;">
+          A small collection of Sam being Sam. 💙
+        </p>
+
+        <br>
+
+        <div class="gallery">
+
+          <div class="gallery-item">
+            <img src="sam-photo.jpg" alt="Sam">
+          </div>
+
+          <div class="gallery-item">
+            <img src="IMG-20260812-WA0023.jpg" alt="Sam">
+          </div>
+
+          <div class="gallery-item">
+            <img src="IMG-20260812-WA0025.jpg" alt="Sam">
+          </div>
+
+          <div class="gallery-item">
+            <img src="IMG-20260812-WA0026.jpg" alt="Sam">
+          </div>
+
+          <div class="gallery-item">
+            <img src="IMG-20260812-WA0027.jpg" alt="Sam">
+          </div>
+
+          <div class="gallery-item">
+            <img src="IMG-20260812-WA0031.jpg" alt="Sam">
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         VIDEO
+    ========================== -->
+
+    <section id="video">
+
+      <div class="wrap">
+
+        <div class="label">
+          One More Thing 🎥
+        </div>
+
+        <h2>
+          Since You're Already Here…
+        </h2>
+
+        <div class="video-card">
+
+          <video controls playsinline preload="metadata">
+
+            <source
+              src="VID-20260812-WA0033.mp4"
+              type="video/mp4">
+
+            Your browser does not support the video tag.
+
+          </video>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         MUSIC
+    ========================== -->
 
     <section id="music">
+
       <div class="wrap">
-        <div class="label">Soundtrack 🎵</div>
-        <h2>Press play.</h2>
+
+        <div class="label">
+          Soundtrack 🎵
+        </div>
+
+        <h2>
+          Press play.
+        </h2>
+
         <div class="music-card">
+
           <iframe
             src="https://open.spotify.com/embed/playlist/7C67ZkMvy4DdgnUuHn1z9Q?utm_source=generator"
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
             loading="lazy">
           </iframe>
+
         </div>
+
       </div>
+
     </section>
+
+
+    <!-- =========================
+         TERMS & CONDITIONS
+    ========================== -->
+
+    <section id="terms">
+
+      <div class="wrap">
+
+        <div class="label">
+          Important Legal Business 😂
+        </div>
+
+        <h2>
+          Friendship Terms & Conditions
+        </h2>
+
+        <article class="terms-card">
+
+          <p>
+            <strong>Effective from:</strong>
+            That random day we met at the tech event.
+          </p>
+
+          <p>
+            <strong>Current status:</strong>
+            Almost two years in. Still going strong.
+          </p>
+
+
+          <h3>
+            Article 1 — The Friendship
+          </h3>
+
+          <p>
+            By entering this friendship, both parties acknowledge
+            that life will happen, schedules will get crazy, and
+            responsibilities will sometimes take over.
+          </p>
+
+          <p>
+            However, being busy is <strong>not</strong> a valid reason
+            to stop being intentional about the friendship.
+          </p>
+
+
+          <h3>
+            Article 2 — The Disappearing Act
+          </h3>
+
+          <p>
+            Temporary disappearance due to life being life may occur.
+          </p>
+
+          <p>
+            However, disappearing indefinitely without a valid reason
+            is <strong>strictly prohibited.</strong> 😂
+          </p>
+
+          <p>
+            If either party gets caught up with life, an intentional
+            check-in must eventually be made.
+          </p>
+
+          <p>
+            It doesn't have to be a long conversation.
+          </p>
+
+          <p>
+            A simple <strong>“Hey, I'm alive. Life is just doing the most.
+            How are you?”</strong> is sufficient.
+          </p>
+
+          <p>
+            Because apparently, we believe in giving people grace
+            <strong>and</strong> maintaining communication. 😂
+          </p>
+
+
+          <h3>
+            Article 3 — The Catch-Up Clause
+          </h3>
+
+          <p>
+            When life finally gives us breathing space, we shall pick
+            up our conversations from wherever we left them.
+          </p>
+
+          <p>
+            No unnecessary guilt.
+          </p>
+
+          <p>
+            No “you don't care about me anymore” courtroom drama.
+          </p>
+
+          <p>
+            Just:
+          </p>
+
+          <p>
+            <strong>“So… where were we?”</strong>
+          </p>
+
+          <p>
+            And we continue.
+          </p>
+
+
+          <h3>
+            Article 4 — Vulnerability
+          </h3>
+
+          <p>
+            Both parties are permitted to be vulnerable without fear
+            of being judged, misunderstood, or having their deepest
+            moments used against them later.
+          </p>
+
+          <p>
+            Vulnerability shall be treated as
+            <strong>trust, not weakness.</strong>
+          </p>
+
+
+          <h3>
+            Article 5 — Emotional Support
+          </h3>
+
+          <p>
+            Both parties shall endeavour to show up for each other —
+            whether the situation requires serious advice, emotional
+            support, laughter, or simply someone to listen.
+          </p>
+
+          <p>
+            Sometimes the solution may not be available.
+            But presence still counts.
+          </p>
+
+
+          <h3>
+            Article 6 — Intentionality
+          </h3>
+
+          <p>
+            This friendship shall not run entirely on convenience.
+          </p>
+
+          <p>
+            Both parties agree to intentionally check in,
+            intentionally make time, and intentionally maintain
+            the connection — even when life gets busy.
+          </p>
+
+          <p>
+            Because good friendships don't survive on vibes alone. 😂
+          </p>
+
+
+          <h3>
+            Article 7 — Distance
+          </h3>
+
+          <p>
+            Abuja, Lagos, Imo State, or wherever life takes us next
+            shall not determine the quality of this friendship.
+          </p>
+
+          <p>
+            Distance may change the frequency of seeing each other.
+            It shall not determine the depth of the connection.
+          </p>
+
+
+          <h3>
+            Article 8 — The Almost-Two-Year Clause
+          </h3>
+
+          <p>
+            After almost two years, both parties acknowledge that
+            this friendship has survived different cities, busy
+            schedules, life changes, silence, conversations, laughter,
+            serious moments, and everything in between.
+          </p>
+
+          <p>
+            At this point, we're clearly doing something right.
+          </p>
+
+
+          <h3>
+            Article 9 — Termination
+          </h3>
+
+          <p>
+            This friendship may not be terminated due to:
+          </p>
+
+          <ul>
+            <li>busy schedules</li>
+            <li>distance</li>
+            <li>delayed replies</li>
+            <li>temporary life chaos</li>
+            <li>misunderstandings</li>
+            <li>or the occasional “I'll reply later” that somehow becomes tomorrow 😂</li>
+          </ul>
+
+          <p>
+            Any serious issue shall first be discussed like responsible adults.
+          </p>
+
+
+          <div class="terms-highlight">
+
+            By continuing, you acknowledge that this friendship
+            is built on trust, grace, vulnerability, communication,
+            intentionality, and an unreasonable amount of memories.
+
+            <br><br>
+
+            There is no unsubscribe button.
+
+            <br>
+
+            <strong>You've been warned. 😂💙</strong>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         FINAL SURPRISE
+    ========================== -->
+
+    <section class="final-section" id="final">
+
+      <div class="wrap final-intro">
+
+        <div class="label">
+          One Last Thing 💌
+        </div>
+
+        <h2>
+          You've Reached The End…
+        </h2>
+
+        <p style="color: var(--muted); line-height: 1.8;">
+          Or have you? 👀
+        </p>
+
+        <button
+          class="prank-button"
+          onclick="revealFinalMessage()">
+          One last thing… 💙
+        </button>
+
+
+        <article id="final-message" class="final-card">
+
+          <p>
+            Sam,
+          </p>
+
+          <p>
+            If you've actually made it all the way here, then I guess
+            I can stop hiding behind the jokes for a minute. 😂
+          </p>
+
+          <p>
+            One of the things I appreciate most about our friendship
+            is how freely you confide in me. You don't seem afraid of
+            whatever image you might be creating in my head, and I
+            don't take that for granted.
+          </p>
+
+          <p>
+            I've come to understand that vulnerability isn't weakness.
+            Sometimes, it's actually one of the clearest signs of trust.
+          </p>
+
+          <p>
+            So whenever you allow yourself to be completely honest,
+            open, uncertain, emotional, or simply human with me,
+            I appreciate it. I hope you always know that you don't
+            have to have everything figured out before you can talk to me.
+          </p>
+
+          <p>
+            This friendship has also taught me something I didn't
+            necessarily know before — that people can genuinely be
+            busy living their lives and still care about each other.
+          </p>
+
+          <p>
+            We don't always have to talk every day. We don't have to
+            constantly prove that we're friends. Sometimes life gets
+            loud, schedules get crazy, and people have things they
+            need to deal with.
+          </p>
+
+          <p>
+            But I love that we've been able to find our way back to
+            each other and simply continue from where we left off.
+          </p>
+
+          <p>
+            At the same time, I believe the friendships that matter
+            deserve intentionality. And I want you to always remember
+            that I am intentional about the friendship we share.
+          </p>
+
+          <p>
+            I hope we never lose that.
+          </p>
+
+          <p>
+            I hope our connection stays as comfortable as it is now,
+            but also continues to grow deeper — through more
+            conversations, more memories, more honesty, more laughter,
+            and all the different versions of ourselves we'll become
+            along the way.
+          </p>
+
+          <p>
+            And honestly, I'm just really glad we met.
+          </p>
+
+          <p>
+            Who would have thought that a random hello at a tech event
+            would eventually become this?
+          </p>
+
+          <p>
+            Almost two years later, here we are.
+          </p>
+
+          <p>
+            I'm grateful for the friendship we've built, grateful for
+            the person you've allowed me to know, and grateful that
+            somehow, through distance, busy schedules, and life itself,
+            we made it this far.
+          </p>
+
+          <p class="big-line">
+            I'm really glad you're my friend, Sam. 💙
+          </p>
+
+          <p>
+            And whatever life looks like from here, I hope you always
+            remember that this friendship has always meant something to me.
+          </p>
+
+          <p>
+            <strong>
+              Here's to almost two years — and hopefully, many more. 💙
+            </strong>
+          </p>
+
+          <p style="text-align:center; margin-top:35px;">
+            Now you can go back to being unserious. 😂
+          </p>
+
+        </article>
+
+      </div>
+
+    </section>
+
   </main>
 
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
   <footer>
-    Made with questionable amounts of friendship and <span class="heart">💙</span>
+
+    Made with questionable amounts of friendship
+    and <span class="heart">💙</span>
+
   </footer>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
+  <script>
+
+    function nextPrankStep() {
+
+      document.getElementById("prank-step-1").style.display = "none";
+
+      document.getElementById("prank-step-2").style.display = "block";
+
+    }
+
+
+    function enterWebsite() {
+
+      const prankScreen =
+        document.getElementById("prank-screen");
+
+      prankScreen.classList.add("hidden");
+
+      setTimeout(function() {
+
+        prankScreen.style.display = "none";
+
+      }, 850);
+
+    }
+
+
+    function revealFinalMessage() {
+
+      const message =
+        document.getElementById("final-message");
+
+      message.style.display = "block";
+
+      setTimeout(function() {
+
+        message.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+
+      }, 100);
+
+    }
+
+  </script>
+
 </body>
-</html>
+  </html>
