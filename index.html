@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello Sam 💙</title>
+  <meta name="description" content="Hello Sam — a playful little friendship website.">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+    :root {
+      --blue: #48a8ff;
+      --deep-blue: #081a3a;
+      --black: #03050b;
+      --white: #f7fbff;
+      --muted: #b8c8dd;
+      --glass: rgba(255,255,255,.08);
+      --border: rgba(255,255,255,.14);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--white);
+      background:
+        radial-gradient(circle at 12% 8%, rgba(38,151,255,.32), transparent 28%),
+        radial-gradient(circle at 88% 30%, rgba(102,57,255,.22), transparent 27%),
+        linear-gradient(135deg, #02040a, #071a39 58%, #02040a);
+      font-family: Inter, system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .22;
+      background-image: radial-gradient(#fff 1px, transparent 1px);
+      background-size: 34px 34px;
+      mask-image: linear-gradient(to bottom, black, transparent 75%);
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 7%;
+      background: rgba(2,4,10,.68);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: "Baloo 2", cursive;
+      font-size: 1.35rem;
+      font-weight: 800;
+    }
+    .logo span { color: var(--blue); }
+
+    nav a {
+      color: #d8e9ff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: .92rem;
+    }
+
+    .hero {
+      min-height: 90vh;
+      display: grid;
+      place-items: center;
+      padding: 80px 7%;
+      text-align: center;
+    }
+
+    .hero-inner { max-width: 900px; }
+
+    .tag {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      color: #a9d7ff;
+      background: rgba(54,166,255,.10);
+      border: 1px solid rgba(83,181,255,.35);
+      font-size: .82rem;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 20px 0 14px;
+      font-family: "Baloo 2", cursive;
+      font-size: clamp(4.8rem, 15vw, 10rem);
+      line-height: .78;
+      letter-spacing: -7px;
+      background: linear-gradient(90deg, #fff, #64b9ff, #b08cff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: 0 auto 28px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 1.08rem;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 13px 19px;
+      border-radius: 15px;
+      color: #041020;
+      background: #fff;
+      text-decoration: none;
+      font-weight: 800;
+      transition: transform .2s ease;
+    }
+    .button:hover { transform: translateY(-3px) rotate(-1deg); }
+
+    section { padding: 85px 7%; }
+    .wrap { max-width: 1050px; margin: auto; }
+
+    .label {
+      color: #70beff;
+      font-size: .76rem;
+      letter-spacing: 2.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 8px 0 30px;
+      font-family: "Baloo 2", cursive;
+      font-size: clamp(2.5rem, 7vw, 4.8rem);
+      line-height: .95;
+    }
+
+    .story-card, .music-card {
+      border: 1px solid var(--border);
+      background: linear-gradient(145deg, rgba(255,255,255,.09), rgba(255,255,255,.035));
+      border-radius: 30px;
+      padding: clamp(24px, 5vw, 45px);
+      box-shadow: 0 30px 90px rgba(0,0,0,.30);
+    }
+
+    .story-card p {
+      margin: 0 0 18px;
+      color: #d7e2f0;
+      font-size: 1.04rem;
+      line-height: 1.9;
+    }
+
+    .story-card .thankyou {
+      color: #fff;
+      font-family: "Baloo 2", cursive;
+      font-size: 2.2rem;
+      font-weight: 800;
+    }
+
+    .story-card .final-line {
+      color: #fff;
+      font-family: "Baloo 2", cursive;
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      font-weight: 800;
+    }
+
+    .photo-section {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 35px;
+      align-items: center;
+    }
+
+    .photo-frame {
+      padding: 10px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, #49aaff, #6d45ff, #0b1530);
+      box-shadow: 0 30px 80px rgba(0,0,0,.4);
+      transform: rotate(-2deg);
+    }
+
+    .photo-frame img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+
+    .photo-copy p {
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .music-card iframe {
+      width: 100%;
+      height: 352px;
+      border: 0;
+      border-radius: 14px;
+    }
+
+    footer {
+      padding: 50px 7%;
+      text-align: center;
+      color: #8da1bb;
+      font-size: .9rem;
+    }
+
+    .heart { display: inline-block; animation: float 2s ease-in-out infinite; }
+    @keyframes float {
+      50% { transform: translateY(-5px) rotate(5deg); }
+    }
+
+    @media (max-width: 760px) {
+      .photo-section { grid-template-columns: 1fr; }
+      .photo-frame { max-width: 430px; margin: auto; }
+      h1 { letter-spacing: -4px; }
+      nav { padding: 14px 5%; }
+      section { padding: 65px 5%; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">Hello<span>Sam</span> 💙</div>
+    <a href="#story">Episode 1 ↓</a>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <span class="tag">A tiny website for a very unserious friendship 😭</span>
+      <h1>Hello Sam.</h1>
+      <p>
+        Two years, several cities, random disappearances, plenty of catch-ups…
+        and somehow we're still here. 💙
+      </p>
+      <a class="button" href="#story">Open the story 👀</a>
+    </div>
+  </header>
+
+  <main>
+    <section id="story">
+      <div class="wrap">
+        <div class="label">Episode 1</div>
+        <h2>How It All Started 💙</h2>
+
+        <article class="story-card">
+          <p>It all started at a tech event.</p>
+
+          <p>You were presenting for a website creation competition, and somehow, in the middle of everything happening that day, I walked up to you and said hi. From that simple hello, a whole friendship began.</p>
+
+          <p>You even helped me get a drink — I still can’t decide if it was a cocktail or a mocktail 😂 — and somehow, we ended up exchanging contacts.</p>
+
+          <p>And just like that… we became friends.</p>
+
+          <p>Two years later, it’s actually crazy to think about how much has happened since that day. We’ve had our moments, we’ve fallen out, found our way back, disappeared for a while, and then started talking again like absolutely nothing happened.</p>
+
+          <p>That’s probably one of my favourite things about our friendship.</p>
+
+          <p>We don’t have to talk every single day. We can go a while without speaking, but whenever we do talk again, there’s never that awkward “so why haven't you talked to me?” energy. 😂 It just feels normal. Like we simply pressed pause and continued where we left off.</p>
+
+          <p>And distance never really changed that.</p>
+
+          <p>From Abuja to Lagos, and then from Lagos to Imo State, somehow we’ve still managed to keep this friendship going.</p>
+
+          <p>We’ve had our pretty talks, our random conversations, our serious conversations, and those moments where we’ve just been there for each other emotionally.</p>
+
+          <p class="thankyou">So, Sam…<br>Thank you.</p>
+
+          <p>Thank you for being my friend through all the different versions of this friendship. Thank you for the laughs, the conversations, the advice, the random moments, and even the times we disappeared and somehow came back. 😂</p>
+
+          <p>Two years of friendship is something worth celebrating.</p>
+
+          <p>And honestly?</p>
+
+          <p class="final-line">I’m really glad that random hello at that tech event turned into us. 💙</p>
+
+          <p>Here’s to almost two years, Sam.</p>
+
+          <p>And please… don't let this emotional episode get to your head. 😂</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap photo-section">
+        <div class="photo-frame">
+          <img src="sam-photo.jpg" alt="Sam">
+        </div>
+        <div class="photo-copy">
+          <div class="label">The main character 📸</div>
+          <h2>Yep. This is Sam.</h2>
+          <p>
+            One photo for now. More can be added whenever you send them.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="music">
+      <div class="wrap">
+        <div class="label">Soundtrack 🎵</div>
+        <h2>Press play.</h2>
+        <div class="music-card">
+          <iframe
+            src="https://open.spotify.com/embed/playlist/7C67ZkMvy4DdgnUuHn1z9Q?utm_source=generator"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy">
+          </iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Made with questionable amounts of friendship and <span class="heart">💙</span>
+  </footer>
+</body>
+</html>
